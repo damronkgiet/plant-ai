@@ -1,78 +1,75 @@
-# BOM — Smart Perilla Farm outdoor pilot
+# รายการวัสดุและอุปกรณ์ (BOM) — ปลูกใบงาเกาหลีกลางแจ้ง
 
-Updated: 2026-11-05 | THB indicative planning ranges, **not quotations or guaranteed stock**
+**ปรับปรุง:** 5 พฤศจิกายน 2569 | **สกุลเงิน:** บาท | **ราคา:** ประมาณการเพื่อวางแผน ไม่ใช่ใบเสนอราคา
 
-Assumption: no existing spare pots, no spare metal frame; existing Home Lab/InfluxDB/Grafana and smartphone reused. **No mains power wiring on an exposed lawn.** Obtain local quotes and measure mounting dimensions before procurement.
+ใช้ Home Lab, InfluxDB, Grafana และมือถือที่มีอยู่แล้ว งบนี้ไม่รวมค่าแรงติดตั้งหรือเดินระบบไฟบ้านกลางสนามหญ้า
 
-## A. Plants and pots — essential
+## 1. ต้นไม้และกระถาง — จำเป็น
 
-| Code | Item | Qty | Planned total (THB) | Notes |
+| รหัส | อุปกรณ์ | จำนวน | งบรวมโดยประมาณ (บาท) | หมายเหตุ |
 |---|---|---:|---:|---|
-| P01 | Pot 10–12 inch, drain holes | 12 | 480–960 | same batch/model all 12 |
-| P02 | Consistent potting mix | ~90–120 L | 350–750 | same mix and mass/volume per pot |
-| P03 | Verified edible green Korean perilla (kkaennip) seeds | 1 packet (+spare) | 80–180 | verify true seed type and provenance; do not substitute sesame |
-| P04 | Stable risers/blocks | 12 sets | 240–600 | elevate 10–15cm, do not obstruct holes |
-| P05 | Labels, mulch, watering measure | 1 set | 200–450 | ID tag + graduated measuring jug |
-| | **Subtotal A** | | **1,350–2,940** | |
+| P01 | กระถาง 10–12 นิ้ว พร้อมรูระบายน้ำ | 12 ใบ | 480–960 | ใช้รุ่นเดียวกัน |
+| P02 | วัสดุปลูกสูตรเดียวกัน | 90–120 ลิตร | 350–750 | ปริมาณเท่ากันทุกกระถาง |
+| P03 | เมล็ดใบงาเกาหลีชนิดกินใบ | 1 ซองพร้อมเผื่อ | 80–180 | ตรวจชื่อ Kkaennip / Perilla frutescens |
+| P04 | อิฐหรือขาตั้งกระถาง | 12 ชุด | 240–600 | ยก 10–15 ซม. ไม่ปิดรูระบายน้ำ |
+| P05 | ป้ายรหัส วัสดุคลุมดิน เหยือกตวงน้ำ | 1 ชุด | 200–450 | บันทึกน้ำเป็นมิลลิลิตร |
+| | **รวมหมวด 1** | | **1,350–2,940** | |
 
-## B. Shade structure — essential for full-sun site
+## 2. โครงสแลน — จำเป็นสำหรับพื้นที่แดดตลอดวัน
 
-| Code | Item | Qty | Planned total (THB) | Notes |
+| รหัส | อุปกรณ์ | จำนวน | งบรวมโดยประมาณ (บาท) | หมายเหตุ |
 |---|---|---:|---:|---|
-| F01 | Galvanized steel poles/crossbars for 3×2m, ~2m tall | 6 posts + crossbars | 1,500–3,000 | cut list after site survey; avoid unbraced PVC |
-| F02 | Ground anchors, braces, connectors | 1 set | 350–800 | type depends on soil, high wind risk |
-| F03 | 50% shade mesh ~2m wide × 3–4m long | 1 | 200–450 | account for overlap/rolling, verify exact net dimensions |
-| F04 | Clips, straps, ties, quick-release rope | 1 set | 150–350 | fabric must be removable quickly |
-| | **Subtotal B** | | **2,200–4,600** | |
-| F05 | Optional west-facing roll-up curtain | 1 | +200–500 | buy only if side sun still a problem |
+| F01 | เสาและคานเหล็กชุบสังกะสี สำหรับแปลง 3 × 2 ม. | 6 เสาพร้อมคาน | 1,500–3,000 | วัดก่อนสั่งตัด ไม่ใช้ PVC แบบไม่มีค้ำยัน |
+| F02 | สมอบก ค้ำยัน และข้อต่อ | 1 ชุด | 350–800 | เหมาะกับชนิดดินและลม |
+| F03 | สแลนพรางแสง 50% | 1 ผืนประมาณ 2 × 3–4 ม. | 200–450 | เผื่อชายและที่ม้วน |
+| F04 | คลิปล็อก เชือก สายรัด และชุดปลดเร็ว | 1 ชุด | 150–350 | ถอดสแลนก่อนพายุได้ |
+| | **รวมหมวด 2** | | **2,200–4,600** | |
+| F05 | ม่านสแลนด้านที่รับแดดบ่าย (ทางเลือก) | 1 ชุด | **เพิ่ม 200–500** | ซื้อหลังสำรวจแดดจริง |
 
-## C. Sensor and electronics — essential for telemetry MVP
+## 3. เซนเซอร์และระบบ IoT — จำเป็น
 
-| Code | Item | Qty | Planned total (THB) | Notes |
+| รหัส | อุปกรณ์ | จำนวน | งบรวมโดยประมาณ (บาท) | หมายเหตุ |
 |---|---|---:|---:|---|
-| E01 | ESP32 DevKit (2.4GHz Wi-Fi) | 1 | 180–350 | reuse spare if available |
-| E02 | SHT31 with radiation shield/weather arrangement | 1 | 250–600 | keep measuring element ventilated |
-| E03 | BH1750 / suitable Lux sensor weather-housed | 2 | 160–360 | shaded vs unshaded; Lux ≠ PAR; check saturation |
-| E04 | Capacitive soil probes for continuous outdoor operation | 4 | 520–1,400 | prefer sealed probes; cheap bare PCB probes are not truly rainproof |
-| E05 | IP65 enclosure + mounting | 1 | 180–450 | mount at south central frame post |
-| E06 | Cable glands, short shielded signal wires, mounting hardware | 1 set | 250–600 | ADC cable noise check required |
-| E07 | Safe 5V DC supply and outdoor-rated low-voltage routing | 1 set | 300–900 | power supply positioned protected, residual-current-protected circuit if mains involved |
-| | **Subtotal C** | | **1,840–4,660** | |
+| E01 | ESP32 DevKit รองรับ Wi-Fi 2.4 GHz | 1 | 180–350 | ใช้ของเดิมได้ |
+| E02 | SHT31 พร้อมฝาครอบกันแดดและกันฝน | 1 | 250–600 | ฝาครอบต้องระบายอากาศได้ |
+| E03 | BH1750 พร้อมฝาครอบ | 2 | 160–360 | ใต้/นอกสแลน ค่า lux ไม่ใช่ PAR |
+| E04 | เซนเซอร์ความชื้นดินชนิด Capacitive สำหรับกลางแจ้ง | 4 | 520–1,400 | เลือกแบบปิดผนึก ไม่ใช้แผงเปลือย |
+| E05 | กล่องกันน้ำ IP65 และอุปกรณ์ยึด | 1 | 180–450 | ติดเสาข้างแปลง |
+| E06 | ข้อต่อกันน้ำ สายสัญญาณ และอุปกรณ์เดินสาย | 1 ชุด | 250–600 | ทดสอบสัญญาณรบกวน |
+| E07 | แหล่งจ่าย 5V DC และอุปกรณ์เดินสายแรงดันต่ำที่ปลอดภัย | 1 ชุด | 300–900 | ป้องกันน้ำและการสะดุด |
+| | **รวมหมวด 3** | | **1,840–4,660** | |
 
-## Summary
+## 4. สรุปงบประมาณ
 
-| Bundle | THB |
+| หมวด | งบรวม (บาท) |
 |---|---:|
-| Plants + pots | 1,350–2,940 |
-| Shade structure | 2,200–4,600 |
-| Electronics | 1,840–4,660 |
-| **Essential total (A+B+C)** | **5,390–12,200** |
-| West curtain optional | +200–500 |
-| Later irrigation pump/valves and camera | **excluded** |
+| ต้นไม้และกระถาง | 1,350–2,940 |
+| โครงสแลน | 2,200–4,600 |
+| เซนเซอร์และระบบ IoT | 1,840–4,660 |
+| **รวมจำเป็น** | **5,390–12,200** |
+| ม่านสแลนด้านแดดบ่าย | เพิ่ม 200–500 |
 
-Amounts depend heavily on durability of outdoor sensor probes, metalwork and already-owned components. Delivery, contractor labor, replacements, and electrical professional fees excluded. The earlier lighter budget excluded part of robust outdoor anchoring and durable electronics; this is a fuller outdoor estimate.
+ราคาเป็นเพียงกรอบงบประมาณ ไม่รวมค่าขนส่ง ค่าแรงช่าง เครื่องมือ และอุปกรณ์สำรอง งบนี้ละเอียดกว่างบเริ่มแรก เพราะคิดค่าโครงยึดรับลม อุปกรณ์กันน้ำ และระบบจ่ายไฟที่เหมาะกับกลางแจ้งแล้ว
 
-## Practical procurement stages
+## 5. ลำดับการซื้อ
 
-**Buy first:** seeds, 12 pots, potting mix, labels, measuring jug; simulate field in phone spreadsheet before full sensors.
+1. **ซื้อได้ก่อน:** เมล็ดที่ยืนยันชนิด กระถาง 12 ใบ วัสดุปลูก ป้ายรหัส เหยือกตวง และขาตั้ง
+2. **ซื้อหลังสำรวจพื้นที่:** โครงเหล็ก สมอบก สแลน ชุดคลิป และม่านเสริมถ้าจำเป็น
+3. **ซื้อหลังทดสอบบนโต๊ะ:** ESP32, SHT31, BH1750 จำนวน 2 ตัว, เซนเซอร์ดิน 4 ตัว และกล่องกันน้ำ
+4. **ยังไม่ซื้อ:** ปั๊มรดน้ำอัตโนมัติ มอเตอร์สแลน กล้องถาวร และระบบจ่ายปุ๋ย
 
-**After site survey:** metal frame, ground anchors and shade mesh. Check soil firmness / wind / water access.
+## 6. เกณฑ์ตรวจรับ
 
-**After dry-run on bench:** ESP32 + SHT31 + 2 lux + 4 soil probes + box, verify range/noise and MQTT; install outdoors only after safe wiring check.
+- เมล็ดระบุใบงาเกาหลี Kkaennip / Perilla frutescens สำหรับกินใบ ไม่ใช่งาทั่วไป
+- กระถางมีปริมาตรและการระบายน้ำเหมือนกัน
+- โครงมีสมอบก ค้ำยัน และกลไกถอดสแลนรวดเร็ว
+- วงจรเข้ากันได้กับ ESP32 ห้ามป้อนแรงดันเกิน 3.3V เข้าขา ADC
+- กล่อง IP65 ไม่ทำให้เซนเซอร์ที่ติดด้านนอกกันน้ำโดยอัตโนมัติ
+- หากติดตั้งไฟบ้านนอกอาคาร ต้องมีมาตรการป้องกันไฟดูดและใช้ช่างที่เหมาะสม
 
-**Do not buy yet:** irrigation pump, automated shade motor, fixed IP camera, expensive PAR sensor, heater/chiller, fertilizer injector.
+## 7. ร้านสำหรับใช้ตรวจสอบราคาจริง
 
-## Example Thai retail price evidence (not endorsements; verify current price/stock)
+- [ArtronShop](https://www.artronshop.co.th/)
+- [Thai Electronic and Sensor Technology](https://thaielecsensor.com/shop)
 
-- [ArtronShop Farm1 component listing](https://www.artronshop.co.th/product/tag/Farm1): commodity capacitive sensor ~118 THB; weather-ready versions often cost more.
-- [ArtronShop humidity sensor listing](https://www.artronshop.co.th/category/57/โมดูลเซ็นเซอร์วัดอุณหภูมิและความชื้น): SHT30 commodity module ~161 THB (not equivalent to shielded outdoor assembly).
-- [Thai Electronic and Sensor Technology](https://thaielecsensor.com/shop): industrial versions often materially costlier.
-- Specific price rows above are planning allocations, **not copied vendor offers**; obtain 2 quotes for frame/anchors and confirm sensor packaging specifications before order.
-
-## Supplier acceptance requirements
-
-- Seed packet explicitly says Korean edible perilla / kkaennip / Perilla frutescens, with seller and lot/date.
-- All pots same volume, draining freely.
-- Structural frame has safe anchor/tie-down plan and rapid cloth release.
-- Electronics 5V/3.3V-compatible with documented interfaces; ESP32 ADC inputs must never receive >3.3V.
-- Outdoor electronics withstand splash; **IP65 box does not make exposed sensor boards waterproof**.
+**ก่อนสั่งซื้อ:** ขอราคาอย่างน้อย 2 แหล่งสำหรับโครงและสมอบก และตรวจข้อมูลการกันน้ำของเซนเซอร์แต่ละรุ่น
