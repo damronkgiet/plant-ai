@@ -1,73 +1,73 @@
-# Work Plan and Installation Checklist
+# แผนงานและรายการตรวจสอบการติดตั้ง
 
-Updated: 2026-11-05 | Status: TODO | Track completion by editing [ ] → [x] with date/evidence
+**ปรับปรุง:** 5 พฤศจิกายน 2569 | **สถานะ:** ยังไม่เริ่ม | เมื่องานเสร็จให้เปลี่ยน [ ] เป็น [x] และบันทึกวันที่/ภาพหลักฐาน
 
-## Gate 0 — site survey (before buying frame)
+## ด่านที่ 0 — สำรวจพื้นที่ก่อนซื้อโครง
 
-- [ ] Record GPS **not necessary**; sketch garden orientation N/E/S/W and measure unobstructed 3×2 m footprint
-- [ ] Confirm available access/walkways (ideally 0.6 m outside frame)
-- [ ] Photograph shadows at 08:00, 11:00, 14:00 on 2–3 days
-- [ ] Identify lowest wet area after rain; do not place pots in standing runoff
-- [ ] Verify phone + ESP32 2.4GHz Wi-Fi at planned enclosure
-- [ ] Identify safe power strategy: protected indoor supply / outdoor low-voltage cable
-- [ ] Check strong wind exposure, children/pets, access, soil condition for anchors
-- [ ] Finalize north arrow / rotate SVG and update coordinates if real plot differs
+- [ ] วัดพื้นที่ว่างจริงอย่างน้อย 3 × 2 เมตร และทางเดินเข้าถึง (แนะนำเผื่อรอบนอก 0.6 เมตรตามความจำเป็น)
+- [ ] วาดทิศเหนือ/ใต้/ตะวันออก/ตะวันตกในสวน
+- [ ] ถ่ายภาพแนวเงาเวลา 08:00, 11:00 และ 14:00 เป็นเวลา 2–3 วัน
+- [ ] ตรวจจุดที่น้ำขังหลังฝนตก เลี่ยงทางระบายน้ำผ่าน
+- [ ] ทดสอบสัญญาณ Wi-Fi 2.4 GHz ณ จุดติดกล่อง ESP32
+- [ ] ระบุแหล่งจ่ายไฟที่ปลอดภัยและเส้นทางสายไฟแรงดันต่ำ
+- [ ] ประเมินลมแรง เด็ก/สัตว์เลี้ยง ความแข็งของดิน และวิธียึดสมอบก
+- [ ] หมุนผัง SVG ให้ตรงทิศจริง และปรับพิกัดหากพื้นที่ต่างจากแบบ
 
-**Done when:** site dimensions and risks documented with photos; BOM budget approved.
+**ผ่านเมื่อ:** มีรูปพื้นที่ ขนาดจริง จุดเสี่ยง และอนุมัติกรอบ BOM ก่อนซื้อโครง
 
-## Gate 1 — crop & frame
+## ด่านที่ 1 — เตรียมต้นและโครงสแลน
 
-- [ ] Source verified Korean perilla edible seed and test germination with spare seeds
-- [ ] Label all 12 equal pots and verify drainage
-- [ ] Mix common substrate, record initial volume and inputs, assign seedlings fairly
-- [ ] Prepare 12 stable stands 10–15cm above grass
-- [ ] Install 6-post frame with diagonal bracing, verified anchors and user-safe access
-- [ ] Attach removable 50% shade mesh; test removal/open/close without snagging
-- [ ] Keep sides open, confirm roof does not trap people/wires
-- [ ] Inspect during dry gusts; **do not leave cloth on if a storm is forecast**
+- [ ] ซื้อเมล็ดใบงาเกาหลีชนิดกินใบที่ตรวจสอบชื่อพันธุ์แล้ว และเพาะเผื่อ
+- [ ] เตรียมกระถาง 12 ใบ ขนาดเหมือนกัน ป้ายรหัสครบและระบายน้ำได้
+- [ ] ผสมวัสดุปลูกจากชุดเดียวกัน บันทึกปริมาณและวันเพาะ/ย้ายกล้า
+- [ ] ยกกระถางเหนือหญ้า 10–15 ซม. ด้วยฐานมั่นคง
+- [ ] ติดโครง 6 เสา พร้อมค้ำยันและสมอบกที่เหมาะกับดิน
+- [ ] ติดสแลน 50% แบบถอด/ม้วนได้ ทดสอบคลิปปลดเร็ว
+- [ ] เปิดด้านข้างให้อากาศผ่าน และเข้าถึงทุกกระถางได้อย่างปลอดภัย
+- [ ] ตรวจแรงลมจริงและถอดผ้าก่อนพายุ
 
-**Done when:** frame and supports are stable, all pots accessible, drainage clear.
+**ผ่านเมื่อ:** โครงมั่นคง ทางระบายน้ำเปิดโล่ง เข้าถึงทุกต้นได้
 
-## Gate 2 — electronics bench test
+## ด่านที่ 2 — ทดสอบอุปกรณ์บนโต๊ะก่อนติดตั้ง
 
-- [ ] ESP32 Wi-Fi connected and MQTT publishing at 5-minute intervals
-- [ ] SHT31 in radiation shield with ventilation
-- [ ] Inside and outside light sensors with correct rain-protection, not saturated in comparison window
-- [ ] Four soil probes read consistently, each with its own calibration record
-- [ ] Validate 3.3V ADC input levels, cable length/noise and no exposed conductors
-- [ ] Record test data in InfluxDB and create basic Grafana panel
-- [ ] Test Wi-Fi disconnection/restart: log and alert without losing control safety
-- [ ] Place powered box above splash level, route low voltage only in secure weather-resistant way
+- [ ] ESP32 ต่อ Wi-Fi และส่ง MQTT ทุก 5 นาที
+- [ ] SHT31 อยู่ในฝาครอบกันแดดที่ยังระบายอากาศได้
+- [ ] BH1750 วัดแสงใต้/นอกสแลนได้ และมีวิธีกันฝน
+- [ ] เซนเซอร์ความชื้นดิน 4 ตัวอ่านค่าเสถียร พร้อมบันทึกการสอบเทียบแต่ละตัว
+- [ ] ตรวจแรงดันเข้าขา ADC ไม่เกิน 3.3V และทดสอบสัญญาณรบกวนจากสาย
+- [ ] ข้อมูลเข้า InfluxDB และมีแผง Grafana เบื้องต้น
+- [ ] ทดสอบ Wi-Fi หลุด/อุปกรณ์รีสตาร์ต แล้วระบบไม่สั่งงานอันตราย
+- [ ] กล่องไฟอยู่เหนือระดับน้ำสาด ต่อสายกันน้ำ และเดินสายแรงดันต่ำอย่างปลอดภัย
 
-**Done when:** 24h bench + 24h in-place telemetry sample, data completeness ≥90%, no unsafe power setup.
+**ผ่านเมื่อ:** ทดลองอย่างน้อย 24 ชั่วโมงบนโต๊ะ + 24 ชั่วโมง ณ จุดจริง ข้อมูลครบตามรอบคาดหวัง ≥90% และไม่มีจุดเสี่ยงไฟฟ้า
 
-## Gate 3 — planting baseline
+## ด่านที่ 3 — เริ่มปลูกและบันทึกข้อมูลตั้งต้น
 
-- [ ] Fill plant-registry.csv for all pots (seed batch, sowing, transplant date)
-- [ ] Take first photo per pot with ID/ruler and fixed viewpoint
-- [ ] Calibrate irrigation measuring jug and log mL per pot
-- [ ] Agree rescue watering rule and which decisions differ across A/B
-- [ ] Freeze shared shade schedule for comparison, change for safety only and log it
+- [ ] ใส่ข้อมูลทะเบียน A01–B06 ครบทุกกระถาง
+- [ ] ถ่ายภาพเริ่มต้นพร้อมป้ายรหัสและไม้บรรทัด
+- [ ] เตรียมเหยือกตวงน้ำและระบบบันทึกมิลลิลิตรต่อกระถาง
+- [ ] ตกลงเกณฑ์การรดน้ำช่วยต้นฉุกเฉินที่ใช้เท่าเทียมทั้ง A/B
+- [ ] ตกลงตารางสแลนร่วมกัน และบันทึกทุกครั้งที่เปลี่ยน
 
-**Done when:** 12 IDs tracked, consistent care protocol established.
+**ผ่านเมื่อ:** มีข้อมูลต้นตั้งต้น 12 กระถาง และกติกาดูแลครบ
 
-## Gate 4 — pilot & review
+## ด่านที่ 4 — ทดลองและสรุปผล
 
-- [ ] Daily sensor summary checks and inspect all 12 pots
-- [ ] Weeks 3–4 AI shadow report reviewed for quality
-- [ ] Weeks 5–6 B AI recommendations approved/rejected with reason
-- [ ] Every watering and shade action recorded including weather/rain
-- [ ] Weekly progress report and photos, watch for flower buds
-- [ ] Week 8 compare per-pot outcomes and decide extend / redesign / finish
+- [ ] ตรวจข้อมูลเซนเซอร์และสภาพต้นทุกวัน
+- [ ] สัปดาห์ 3–4 ตรวจรายงาน AI โดยยังไม่ใช้คำแนะนำกับพืชจริง
+- [ ] สัปดาห์ 5–6 ให้คนพิจารณาคำแนะนำ AI สำหรับกลุ่ม B และบันทึกเหตุผล
+- [ ] บันทึกการรดน้ำ ฝน และการปรับสแลนพร้อมเวลา
+- [ ] วัดการเติบโตและภาพรายสัปดาห์ จดวันที่เริ่มมีตาดอก
+- [ ] สัปดาห์ 8 เปรียบเทียบ A/B แล้วตัดสินใจทดลองต่อ ปรับรูปแบบ หรือจบ
 
-## Delivery / definition of done
+## เกณฑ์ปิดงานนำร่อง
 
-- [ ] Plot usable and safe after rain/wind check
-- [ ] Device-to-Grafana telemetry working with validated units
-- [ ] AI daily report includes evidence and uncertainty
-- [ ] A/B results summarized without overstating significance
-- [ ] Final retrospective lists issues and proposed MVP2 requirements
+- [ ] แปลงปลอดภัยหลังฝนและช่วงลมแรง
+- [ ] ข้อมูลถึง Grafana ครบถ้วนพร้อมหน่วยและสถานะเซนเซอร์
+- [ ] รายงาน AI ระบุหลักฐานและระดับความไม่แน่นอน
+- [ ] มีผล A/B ที่แสดงข้อมูลจริง ไม่อ้างผลเกินหลักฐาน
+- [ ] มีบทเรียนและข้อกำหนดสำหรับขั้นต่อไป
 
-## Change log
+## ประวัติการเปลี่ยนแปลง
 
-- 2026-11-05: First version, 12-pot full-sun outdoor pilot and shared shade fairness documented.
+- **5 พฤศจิกายน 2569:** จัดทำรายการตรวจสอบสำหรับแปลงกลางแจ้ง 12 กระถาง พร้อมสแลนร่วมกัน
