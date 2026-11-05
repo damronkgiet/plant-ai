@@ -1,35 +1,49 @@
-# Plant AI — Smart Perilla Farm
+# Plant AI — โครงการทดลองปลูกใบงาเกาหลีด้วย AI และ IoT
 
-โครงการทดลองปลูก **ใบงาเกาหลี (Korean perilla / Kkaennip)** ด้วย AI + IoT ในสวนบ้าน
+โครงการนำร่องสำหรับปลูก **ใบงาเกาหลี (Kkaennip / Perilla frutescens)** ในสวนที่บ้าน โดยใช้ข้อมูลจากเซนเซอร์ ภาพถ่าย และ AI เพื่อช่วยประเมินสุขภาพพืชและแนะนำการดูแล
 
-## Pilot v0.4 — assumptions (2026-11-05)
+> **สถานะ:** วางแผน ยังไม่ได้ติดตั้งจริง | **ฉบับ:** 0.4 | **ปรับปรุง:** 5 พฤศจิกายน 2569
 
-- สถานที่: สนามหญ้า/พื้นดินกลางแจ้ง ได้รับแดดเกือบทั้งวัน
-- พื้นที่ทดลอง: 3.0 × 2.0 เมตร (โครงสแลนชั่วคราว); เผื่อทางเดินรอบนอก
-- พืช: 12 กระถาง ขนาด 10–12 นิ้ว ยกพ้นพื้น 10–15 ซม.
-- แสง: สแลน 50% หลังคาถอด/ม้วนได้ ข้างเปิด; ม่านฝั่งแดดบ่ายเป็น option
-- A/B: 6 กระถางดูแลมาตรฐาน และ 6 กระถางรับคำแนะนำ AI; ทั้งคู่ใช้สแลนเดียวกัน
-- ระยะ: 8 สัปดาห์สำหรับ pilot; อาจขยายจนเก็บเกี่ยวได้จริง
-- สถานะ: **Planning / Not installed** — ขนาดและทิศจริงต้องวัดหน้างานก่อนซื้อโครง
+## ขอบเขตการทดลอง
 
-## Documents
+- **สถานที่:** พื้นดิน/สนามหญ้ากลางแจ้ง ได้รับแดดเกือบตลอดวัน
+- **พื้นที่แปลง:** 3 × 2 เมตร สำหรับโครงสแลน และต้องเผื่อทางเดินนอกแปลง
+- **จำนวน:** 12 กระถาง ขนาด 10–12 นิ้ว ยกจากพื้น 10–15 ซม.
+- **สแลน:** พรางแสง 50% คลุมด้านบนแบบเปิด–ปิดได้ เปิดโล่งด้านข้าง และอาจเสริมม่านด้านที่ได้รับแดดบ่าย
+- **การทดลอง:** กลุ่ม A ดูแลแบบมาตรฐาน 6 กระถาง เทียบกับกลุ่ม B ที่ใช้คำแนะนำ AI 6 กระถาง ทั้งสองกลุ่มใช้สแลนเดียวกัน
+- **ระยะนำร่อง:** 8 สัปดาห์ และขยายเวลาหากยังไม่พร้อมเก็บเกี่ยว
+- **ระบบ:** ESP32 → MQTT → InfluxDB → Grafana; ใช้ภาพถ่ายมือถือและ AI ประมวลผลเป็นรอบ
 
-1. [Project charter and scope](docs/01-project-charter.md)
-2. [Detailed plot layout and sensor placement](docs/02-site-layout.md)
-3. [Bill of materials (BOM)](docs/03-bom.md)
-4. [Experiment and measurement plan](docs/04-experiment-plan.md)
-5. [IoT/AI architecture and data contract](docs/05-iot-ai-architecture.md)
-6. [Installation and acceptance checklist](docs/06-installation-checklist.md)
-7. [Scalable plot drawing (SVG)](docs/site-layout.svg)
+## เอกสารโครงการ
 
-## Guiding principles
+| เอกสาร | รายละเอียด |
+|---|---|
+| [01 — ขอบเขตโครงการ](docs/01-project-charter.md) | เป้าหมาย ข้อสมมติ ความเสี่ยง และเกณฑ์ความสำเร็จ |
+| [02 — ผังพื้นที่ติดตั้ง](docs/02-site-layout.md) | ตำแหน่งกระถาง โครงสแลน เซนเซอร์ และระยะ |
+| [03 — รายการวัสดุและอุปกรณ์ (BOM)](docs/03-bom.md) | จำนวน งบประมาณ และลำดับการจัดซื้อ |
+| [04 — แผนการทดลอง](docs/04-experiment-plan.md) | วิธีเปรียบเทียบ A/B กำหนดการ และข้อมูลที่เก็บ |
+| [05 — สถาปัตยกรรม IoT และ AI](docs/05-iot-ai-architecture.md) | การรับส่งข้อมูล การวิเคราะห์ และความปลอดภัย |
+| [06 — แผนงานและรายการตรวจสอบ](docs/06-installation-checklist.md) | ลำดับการติดตั้งและเกณฑ์ตรวจรับ |
+| [ผังพื้นที่แบบ SVG](docs/site-layout.svg) | ภาพแสดงตำแหน่งและมิติของแปลงทดลอง |
 
-- Plant safety first: water/drainage decisions stay under human control in MVP1.
-- MQTT/InfluxDB/Grafana on the existing Home Lab; camera uses phone at first.
-- Record raw data and manual interventions; AI advice is always auditable.
-- Do not change the shared shade roof differently for A and B during the comparison.
-- No purchase commitments until surveying sun path, drainage, power and Wi-Fi.
+## แบบฟอร์มบันทึกข้อมูล
 
-## First milestone
+เก็บไว้ในโฟลเดอร์ [data/templates](data/templates/) โดยใช้หัวคอลัมน์ภาษาอังกฤษเป็น **รหัสข้อมูลสำหรับโปรแกรม** และให้คำอธิบายภาษาไทยใน [พจนานุกรมข้อมูล](data/templates/README.md)
 
-Survey 08:00 / 11:00 / 14:00 for 2–3 days; confirm physical dimensions and direction; then approve BOM and build.
+- [ทะเบียนกระถาง](data/templates/plant-registry.csv)
+- [บันทึกการเติบโตและสุขภาพต้น](data/templates/daily-observations.csv)
+- [บันทึกการให้น้ำและการตัดสินใจ](data/templates/watering-log.csv)
+
+## หลักการดำเนินงาน
+
+1. **ความปลอดภัยของคนและพืชต้องมาก่อน** ช่วงแรก AI แนะนำเท่านั้น คนเป็นผู้ตัดสินใจรดน้ำ/เปิดสแลน
+2. ใช้ Home Lab, InfluxDB, Grafana และกล้องมือถือที่มีอยู่ก่อน เพื่อลดค่าใช้จ่าย
+3. คำแนะนำของ AI ต้องตรวจสอบย้อนกลับได้ว่าดูข้อมูลและภาพใด
+4. กลุ่ม A/B ต้องได้รับแสงและการดูแลพื้นฐานเหมือนกัน ความแตกต่างหลักคือ **วิธีตัดสินใจให้น้ำ**
+5. ต้องสำรวจทิศแดด การระบายน้ำ จุดยึดโครง ระบบไฟ และ Wi-Fi ก่อนสั่งซื้ออุปกรณ์
+
+## งานถัดไป
+
+สำรวจพื้นที่จริง 2–3 วัน เก็บภาพแสงแดดเวลา 08:00, 11:00 และ 14:00 จากนั้นยืนยันผังและงบก่อนสั่งซื้อ
+
+ติดตามงานที่ [GitHub Issue #1 — สำรวจพื้นที่จริงและอนุมัติ BOM](https://github.com/damronkgiet/plant-ai/issues/1)
