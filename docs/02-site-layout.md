@@ -1,98 +1,100 @@
-# Site Layout — 12 pots / 3.0 × 2.0 m
+# ผังพื้นที่ติดตั้ง — แปลง 3 × 2 เมตร / 12 กระถาง
 
-Updated: 2026-11-05 | Version: v0.4 | Physical installation pending site survey
+**ฉบับ:** 0.4 | **วันที่:** 5 พฤศจิกายน 2569 | **สถานะ:** แบบร่าง ต้องสำรวจพื้นที่จริงก่อนติดตั้ง
 
-![Detailed plot layout](site-layout.svg)
+![ผังการจัดวางกระถาง โครงสแลน และเซนเซอร์](site-layout.svg)
 
-## Coordinate convention
+## 1. ระบบพิกัดและระยะ
 
-- X from **west to east**, 0.0–3.0 m; Y from **south to north**, 0.0–2.0 m.
-- This is a drawing convention, **not verified property orientation**. Rotate entire drawing to match the real garden / sun path after field survey.
-- South edge shown as **front access**. Walkway outside frame ≥0.6 m where reachable.
-- For 0.6 m clearance on all 4 sides, overall unobstructed area ≈ **4.2 × 3.2 m**.
-- Pot centers X = 0.45, 1.15, 1.85, 2.55 m (pitch 0.70 m); Y = 0.35, 1.00, 1.65 m (pitch 0.65 m).
-- Pots ~25–30 cm diameter; elevate 10–15 cm above turf on stable blocks/feet; ensure drain holes free.
-- 70 cm centers are acceptable for an **early-stage pot trial**; if adult foliage crowds, widen plot or harvest/relocate *both arms equally* and document it.
+- แกน X จาก **ตะวันตกไปตะวันออก**: 0–3.0 เมตร
+- แกน Y จาก **ใต้ไปเหนือ**: 0–2.0 เมตร
+- **ทิศในภาพเป็นทิศสมมติ** ต้องหมุนผังให้ตรงกับพื้นที่จริงหลังสำรวจแสงแดด
+- ด้านใต้ในผังคือด้านเข้าใช้งาน เผื่อทางเดินด้านนอกอย่างน้อย 0.6 เมตรในด้านที่ต้องเข้าถึง
+- ถ้าเผื่อทางเดินรอบครบทั้ง 4 ด้าน จะต้องมีพื้นที่ว่างรวมประมาณ **4.2 × 3.2 เมตร**
+- จุดกึ่งกลางกระถางตามแกน X = 0.45, 1.15, 1.85, 2.55 เมตร (ห่างกัน 0.70 เมตร)
+- จุดกึ่งกลางกระถางตามแกน Y = 0.35, 1.00, 1.65 เมตร (ห่างกัน 0.65 เมตร)
+- กระถางเส้นผ่านศูนย์กลาง 25–30 ซม. ยกจากสนามหญ้า 10–15 ซม. โดยไม่ปิดรูระบายน้ำ
+- หากทรงพุ่มเมื่อโตเต็มที่เบียดกัน ให้ขยายพื้นที่หรือปรับผัง **ทั้งสองกลุ่มอย่างเท่าเทียม** และบันทึกการเปลี่ยนแปลง
 
-## Top view (schematic, fixed 4-column grid)
+## 2. ผังมองจากด้านบน
 
 ~~~text
-                      WEST --> EAST (X)
-             x=.45       1.15       1.85       2.55
-NORTH y=1.65  A01        B01        A02*       B02*
-       y=1.00  B03        A03        B04        A04
-SOUTH y=0.35  A05*       B05*       A06        B06
-                 * = soil moisture probe (4)
-                 T/RH near x=1.50, y=1.00
-                 LUX-IN x=1.50, y=1.48
-                 ESP32 at south-mid post
+                   ตะวันตก → ตะวันออก (แกน X)
+                 0.45      1.15      1.85      2.55
+เหนือ Y=1.65      A01       B01       A02*      B02*
+      Y=1.00      B03       A03       B04       A04
+ใต้   Y=0.35      A05*      B05*      A06       B06
+
+* = กระถางที่ติดเซนเซอร์ความชื้นดิน (รวม 4 ตัว)
+T/RH = อุณหภูมิและความชื้นอากาศ ใกล้ X=1.50, Y=1.00
+แสงใต้สแลน = X=1.50, Y=1.48
+ESP32 = เสากลางด้านใต้
 ~~~
 
-The [SVG drawing](site-layout.svg) shows dimensions, poles, side curtain, and out-of-plot light sensor.
+ดูรายละเอียดเสา ม่านด้านตะวันตก และเซนเซอร์แสงนอกแปลงได้จาก [ภาพผัง SVG](site-layout.svg)
 
-## Exact pot coordinates (metres)
+## 3. พิกัดกระถาง
 
-| Pot ID | Arm | X | Y | Soil probe |
+| รหัส | กลุ่ม | X (ม.) | Y (ม.) | ความชื้นดิน |
 |---|---|---:|---:|---|
-| A01 | Control | 0.45 | 1.65 | no |
-| B01 | AI | 1.15 | 1.65 | no |
-| A02 | Control | 1.85 | 1.65 | S-A02 |
-| B02 | AI | 2.55 | 1.65 | S-B02 |
-| B03 | AI | 0.45 | 1.00 | no |
-| A03 | Control | 1.15 | 1.00 | no |
-| B04 | AI | 1.85 | 1.00 | no |
-| A04 | Control | 2.55 | 1.00 | no |
-| A05 | Control | 0.45 | 0.35 | S-A05 |
-| B05 | AI | 1.15 | 0.35 | S-B05 |
-| A06 | Control | 1.85 | 0.35 | no |
-| B06 | AI | 2.55 | 0.35 | no |
+| A01 | ดูแลมาตรฐาน | 0.45 | 1.65 | — |
+| B01 | ใช้คำแนะนำ AI | 1.15 | 1.65 | — |
+| A02 | ดูแลมาตรฐาน | 1.85 | 1.65 | ติดตั้ง |
+| B02 | ใช้คำแนะนำ AI | 2.55 | 1.65 | ติดตั้ง |
+| B03 | ใช้คำแนะนำ AI | 0.45 | 1.00 | — |
+| A03 | ดูแลมาตรฐาน | 1.15 | 1.00 | — |
+| B04 | ใช้คำแนะนำ AI | 1.85 | 1.00 | — |
+| A04 | ดูแลมาตรฐาน | 2.55 | 1.00 | — |
+| A05 | ดูแลมาตรฐาน | 0.45 | 0.35 | ติดตั้ง |
+| B05 | ใช้คำแนะนำ AI | 1.15 | 0.35 | ติดตั้ง |
+| A06 | ดูแลมาตรฐาน | 1.85 | 0.35 | — |
+| B06 | ใช้คำแนะนำ AI | 2.55 | 0.35 | — |
 
-* = 1 soil probe. Two probes per arm, one north/south and one edge/interior representative. All other pots need periodic manual check. The A/B labels are starting assignments; ideally perform matched randomization after the seedlings are comparable.
+รหัส A/B เป็นการกำหนดเบื้องต้น ควรจับคู่ต้นกล้าที่มีขนาดใกล้กันก่อนสุ่มเข้ากลุ่ม เพื่อไม่ให้ความแข็งแรงตั้งต้นเป็นตัวแปรแฝง
 
-## Frame and shade
+## 4. โครงและสแลน
 
-- 6 poles: (X,Y) = (0,0), (1.5,0), (3,0), (0,2), (1.5,2), (3,2).
-- Target clear headroom ≥1.8 m, with top ~1.9–2.1 m based on user's reach/structure.
-- Choose 50% shade cloth with **quick-release clips / roll-up top**; use between ~10:30–15:30 initially when sunny and plants show heat load. Time is a provisional observation rule, not universal.
-- Sides open for airflow. Optional **western roll-up curtain** if low-angle afternoon sun still reaches leaves, activated identically for all 12 pots.
-- Shade mesh **does not keep rain out**. Do not rely on roof slope to control rain in pots.
-- Anchor the pole bases to ground using verified soil-appropriate methods with bracing; removal in high wind is mandatory. PVC-only tall frames are not the default recommendation.
-- Never assume a 3×2 m wind-loaded canopy is structurally safe without testing its bracing and anchoring.
+- เสา 6 ต้น ณ พิกัด (X,Y) = (0,0), (1.5,0), (3,0), (0,2), (1.5,2), (3,2)
+- ความสูงใต้โครงใช้งานอย่างน้อย 1.8 เมตร หลังคาประมาณ 1.9–2.1 เมตร ปรับตามพื้นที่จริง
+- สแลนพรางแสง 50% คลุมด้านบน ใช้คลิปปลดเร็วหรือกลไกม้วนเก็บ
+- เริ่มทดลองคลุมประมาณ 10:30–15:30 ในวันที่แดดแรง แล้วปรับตามภาพและข้อมูลที่บันทึก
+- ด้านข้างเปิดเพื่อถ่ายเทอากาศ หากแดดบ่ายเฉียงเข้าถึงใบมากให้เพิ่มม่านด้านที่รับแดดบ่าย โดย **ใช้งานเหมือนกันทั้ง A และ B**
+- สแลนไม่กันฝน จึงต้องออกแบบการระบายน้ำในกระถางแยกต่างหาก
+- ยึดโครงกับพื้นดินด้วยสมอบกและค้ำยันที่เหมาะกับสภาพดินจริง ห้ามใช้โครงสูงที่ไม่มีการยึดรับแรงลม
 
-## Sensor locations
+## 5. ตำแหน่งเซนเซอร์และอุปกรณ์
 
-| ID | Proposed location | Mount / caution |
+| รหัส | ตำแหน่ง | วิธีติดตั้ง |
 |---|---|---|
-| T/RH-01 | (1.50,1.00), roughly at canopy height | SHT31 inside ventilated radiation shield; do not let leaves/shade touch it |
-| LUX-IN | (1.50,1.48), top-of-canopy | BH1750 in weather-protected *light-transparent* enclosure; avoid self-shading |
-| LUX-OUT | outside frame, near (3.35,1.00) | compare unshaded vs shaded readings; check device range and saturation |
-| S-A02 | A02 pot at (1.85,1.65) | halfway between stem and pot edge at similar depth |
-| S-B02 | B02 pot at (2.55,1.65) | same |
-| S-A05 | A05 pot at (0.45,0.35) | same |
-| S-B05 | B05 pot at (1.15,0.35) | same |
-| MCU-01 | South-mid post (1.50,0.00), 1.2–1.5 m height | ESP32 inside IP65 enclosure; cable glands face downward; drip loops; accessible away from spray |
-| PHOTO | Fixed smartphone position outside south edge | Photo each pot with pot ID and fixed scale marker; same light/time when feasible |
+| T/RH-01 | กลางแปลง (1.50, 1.00) | SHT31 ใต้ฝาครอบกันรังสีแดดที่ระบายอากาศได้ สูงใกล้ระดับยอดใบ |
+| LUX-IN | (1.50, 1.48) | BH1750 ใกล้ยอดใบใต้สแลน ใช้กล่องโปร่งแสงที่ไม่บังแสงและป้องกันฝน |
+| LUX-OUT | นอกโครงประมาณ (3.35, 1.00) | BH1750 วัดแสงภายนอกเพื่อเทียบ ควรตรวจค่าล้นช่วงวัด |
+| S-A02 | กระถาง A02 | ปักความลึกคงที่ในระหว่างโคนต้นกับขอบกระถาง |
+| S-B02 | กระถาง B02 | ปักเหมือน A02 |
+| S-A05 | กระถาง A05 | ปักเหมือน A02 |
+| S-B05 | กระถาง B05 | ปักเหมือน A02 |
+| MCU-01 | เสากลางด้านใต้ (1.50, 0.00) | ESP32 ในกล่อง IP65 สูงจากพื้น 1.2–1.5 ม. มีท้องสายกันน้ำย้อน |
+| PHOTO | จุดถ่ายรูปคงที่ด้านใต้ | ใช้มือถือถ่ายทุกต้น มีป้ายรหัสและไม้บรรทัดเทียบขนาด |
 
-**Important electrical detail:** Long analog soil-sensor cables create noise. Keep leads short/shielded (start ≤2 m practical routing), validate ADC stability; if runs are longer, use local ADC/second ESP32 or digital/RS485 probes (not included in base budget).
+**ข้อควรระวังทางเทคนิค:** สายเซนเซอร์ความชื้นชนิดแอนะล็อกที่ยาวมากอาจมีสัญญาณรบกวน ให้เริ่มจากสายสั้น ตรวจเสถียรภาพจริง หากระยะสายยาวควรพิจารณาตัวอ่านสัญญาณแยกหรือเซนเซอร์แบบดิจิทัล
 
-## Installation cross-section
+## 6. ภาพตัดด้านข้าง
 
 ~~~text
-    1.9–2.1m       roll-up 50% shade roof (not waterproof)
-     _________/________________________________________________
-     |       air flow open sides            shielded T/RH     |
-     |          perilla pot 25–30 cm  + soil probe            |
-     |              |                                         |
-     |          elevated 10–15 cm above grass                 |
-     |          drainage holes open                           |
-   turf _______________________________________________________
-                  external access aisle ≥60 cm
+สูง ~1.9–2.1 ม.    สแลน 50% แบบถอด/ม้วนได้ ไม่ใช่หลังคากันฝน
+                 ________________________________________
+                 |      ด้านข้างเปิดให้อากาศผ่าน        |
+                 |   ต้นใบงา + เซนเซอร์ความชื้นดิน     |
+                 |   กระถางมีรูระบายน้ำ                 |
+                 |   ฐานยกสูง 10–15 ซม.                 |
+พื้นสนามหญ้า _____|______________________________________|_____
+                 ทางเดินภายนอกแปลงที่เข้าถึงได้ ≥60 ซม.
 ~~~
 
-## Field survey / decisions before final cut list
+## 7. สิ่งที่ต้องยืนยันจากหน้างาน
 
-1. Record actual footprint and locate hose, safe indoor AC source, rainwater pooling and Wi-Fi.
-2. Mark roof-edge shadow at 08:00 / 11:00 / 14:00 for 2–3 days; confirm where western side truly is.
-3. Check existing plants/trees/walls that may create asymmetric shade.
-4. Validate anchor strength and storm disassembly; ensure access from sides.
-5. If only 3×2 m total land is available, **reduce pot count or enlarge site** rather than pretending an external 60cm access aisle exists.
+1. วัดพื้นที่จริง ทางเดิน จุดต่อสายยาง สัญญาณ Wi-Fi และตำแหน่งจ่ายไฟที่ปลอดภัย
+2. ถ่ายภาพเงาเวลา 08:00, 11:00 และ 14:00 อย่างน้อย 2–3 วัน เพื่อยืนยันทิศแดด
+3. ตรวจผนัง/ต้นไม้ที่อาจบังแสงไม่เท่ากัน
+4. ทดสอบการยึดเสา การถอดสแลน และการเข้าถึงทุกกระถาง
+5. หากมีพื้นที่รวมเพียง 3 × 2 เมตร **ต้องลดจำนวนกระถางหรือขยายพื้นที่** ไม่ใช่นับทางเดินรอบนอกที่ไม่มีจริง
