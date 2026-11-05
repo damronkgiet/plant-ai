@@ -1,49 +1,52 @@
-# IoT + AI System Architecture (MVP1)
+# สถาปัตยกรรมระบบ IoT และ AI — ระยะเริ่มต้น
 
-Updated: 2026-11-05 | Design target: Home Lab existing stack, not always-on AI PC
+**ปรับปรุง:** 5 พฤศจิกายน 2569 | **แนวทาง:** ใช้ Home Lab เดิม ไม่จำเป็นต้องเปิดเครื่อง AI ตลอดเวลา
 
-## Topology
+## 1. ภาพรวมระบบ
 
 ~~~text
-12 pots / 3×2m shared shade
-   ├─ 4× capacitive moisture probes
-   ├─ 1× SHT31 (shielded ambient air)
-   └─ 2× BH1750 (under / outside shade; lux only)
-                 │ 3.3V GPIO/ADC; weather-protected cables
-                 ▼
-             ESP32 2.4GHz Wi-Fi
-                 │ MQTT over LAN (retry / no movement commands)
-                 ▼
-          Home Lab MQTT broker
-                 │ Telegraf / small collector
-                 ▼
-          InfluxDB ───────► Grafana charts + alert checks
-                 │
-                 ├──── daily structured observation summary
-Phone photos ────┤
-                 ▼
-          AI analyzer (on-demand when AI PC available)
-                 │
-                 ▼
-        Recommendations stored + human approval log
-                 └──── daily summary / optional message alert
+แปลงปลูก 12 กระถาง / สแลนร่วมขนาด 3 × 2 เมตร
+  ├─ ความชื้นดิน 4 จุด
+  ├─ อุณหภูมิ/ความชื้นอากาศ SHT31 จำนวน 1 จุด
+  └─ เซนเซอร์แสง BH1750 ใต้/นอกสแลน 2 จุด
+                    │
+                    ▼
+             ESP32 + Wi-Fi 2.4 GHz
+                    │ ส่งข้อมูลผ่าน MQTT
+                    ▼
+             ตัวรับข้อมูลบน Home Lab
+                    │ ตรวจสอบและแปลงข้อมูล
+                    ▼
+               InfluxDB ──────► Grafana / การแจ้งเตือน
+                    │
+ภาพถ่ายจากมือถือ ───┤
+                    ▼
+          AI วิเคราะห์ภาพและข้อมูลเป็นรอบ
+                    │
+                    ▼
+          คำแนะนำ + เหตุผล + หลักฐาน
+                    │
+                    ▼
+          คนตรวจและบันทึกการตัดสินใจ
 ~~~
 
-## Split responsibilities
+## 2. บทบาทแต่ละส่วน
 
-| Component | Always on? | Function |
+| ส่วนประกอบ | ต้องเปิดตลอดหรือไม่ | หน้าที่ |
 |---|---|---|
-| ESP32 | yes if powered | read probes, buffer small outages, publish |
-| Home Lab broker/collector | yes | telemetry ingestion, validation, persistence |
-| InfluxDB/Grafana | yes | trends, gaps, anomalies, dashboards |
-| Phone photo workflow | operator | repeatable evidence photos, filenames |
-| Local vision model / LLM | **no** | batch assessment, photo comparison and recommendations |
-| Human | on inspection | watering, shade, pest care, safety overrides |
+| ESP32 | เปิดเมื่อจ่ายไฟ | อ่านเซนเซอร์และส่งข้อมูล |
+| MQTT / ตัวรับข้อมูล | เปิดตลอด | รับและตรวจสอบข้อมูล |
+| InfluxDB / Grafana | เปิดตลอด | เก็บประวัติ แสดงแนวโน้ม และแจ้งเมื่อข้อมูลหาย |
+| มือถือ | ใช้ตามรอบตรวจ | ถ่ายภาพต้นไม้จากมุมมาตรฐาน |
+| Vision AI / LLM | ไม่จำเป็น | วิเคราะห์ย้อนหลังและเสนอคำแนะนำ |
+| ผู้ดูแล | ตรวจตามรอบ | รดน้ำ ปรับสแลน ตรวจแมลง และอนุมัติคำแนะนำ |
 
-## MVP telemetry envelope / contract v0.1
+## 3. ข้อตกลงรูปแบบข้อมูลเบื้องต้น
 
-MQTT topic: plant-ai/v1/site/home/telemetry (device identifier in payload).
-Timestamp: ISO-8601 **UTC** from synchronized clock; dashboard display Asia/Bangkok.
+- หัวข้อข้อความ MQTT: plant-ai/v1/site/home/telemetry
+- เวลาข้อมูล: มาตรฐาน UTC รูปแบบ ISO 8601
+- การแสดงเวลาบน Dashboard: Asia/Bangkok
+- ตัวอย่างด้านล่างเป็น **ข้อมูลสมมติสำหรับออกแบบระบบ ไม่ใช่ข้อมูลจากต้นไม้จริง**
 
 ~~~json
 {
@@ -61,47 +64,52 @@ Timestamp: ISO-8601 **UTC** from synchronized clock; dashboard display Asia/Bang
     "B05": {"adc_raw": 1920, "relative_moisture_pct": 40.0, "valid": true}
   },
   "shade_state": "deployed",
-  "sample_quality": ["demo_sample_not_actual_data"]
+  "sample_quality": ["example_not_real_measurement"]
 }
 ~~~
 
-Numbers above are **illustrative**, not measured. Report both raw ADC and per-probe calibrated indicator; keep valid flag. Do not mislabel relative percent as measured volumetric water content.
+**ชื่อฟิลด์ใน JSON ยังคงเป็นภาษาอังกฤษ** เนื่องจากเป็นรหัสทางเทคนิคสำหรับสื่อสารระหว่างระบบ ไม่ใช่ข้อความที่แสดงแก่ผู้ใช้งาน มีคำอธิบายความหมายเป็นภาษาไทยไว้ในเอกสารนี้
 
-## Suggested InfluxDB measurements
+## 4. แบบจัดเก็บข้อมูลใน InfluxDB
 
-- plant_air: tags site_id, sensor_id; fields temp_c, rh_pct, valid
-- plant_light: tags site_id, sensor_id (inside/outside); fields lux, saturated, valid
-- plant_soil: tags pot_id, sensor_id, treatment_arm; fields raw_adc, relative_pct, valid
-- plant_event: tags event_type, pot_id, arm; fields water_ml, duration_min (as applicable)
-- plant_ai_report: store rich text + references in files/SQLite/Postgres, not inflated InfluxDB tags
+| ชื่อชุดข้อมูล (รหัส) | ข้อมูล |
+|---|---|
+| plant_air | อุณหภูมิ °C ความชื้นอากาศ % และสถานะความน่าเชื่อถือ |
+| plant_light | ค่าแสง lux ตำแหน่งใต้/นอกสแลน และสถานะค่าวัดล้น |
+| plant_soil | ค่า ADC ดิบ ค่าเปอร์เซ็นต์เทียบสเกลรายตัว และสถานะข้อมูล |
+| plant_event | เหตุการณ์รดน้ำ ปรับสแลน และระยะเวลาทำงาน |
+| รายงาน AI | เก็บข้อความ หลักฐาน และผลการตัดสินใจในไฟล์หรือฐานข้อมูลที่เหมาะกับข้อมูลข้อความ |
 
-**No cardinality explosion:** avoid attaching photo IDs, unique alert IDs or raw text as InfluxDB series tags. Persist high-cardinality events in relational/file storage.
+หลีกเลี่ยงการเก็บรหัสภาพและข้อความแบบไม่ซ้ำกันเป็นแท็กใน InfluxDB เพราะทำให้จำนวนชุดข้อมูลเพิ่มขึ้นมาก
 
-## QA and alerts
+## 5. คุณภาพข้อมูลและการแจ้งเตือน
 
-- 5-minute sampling, timestamp UTC, fields may be null if measurement failed.
-- Flag missing measurement and improbable jumps instead of silently interpolating.
-- 10-minute no-data alert; repeated probe flatline and strong sensor disagreement flagged for manual inspection.
-- Under-vs-outside shade lux ratio requires both sensors valid and **not saturated**.
-- Initial temperature, soil and light alert thresholds should be **observational**, tuned after first 7–14 days, not hard-coded irrigation triggers.
+- เก็บค่าทุก 5 นาที เวลา UTC
+- แจ้งเตือนเมื่อไม่ได้รับข้อมูลต่อเนื่อง 10 นาที
+- ถ้าค่ากระโดดผิดปกติ คงที่นาน หรือขัดแย้งกับเซนเซอร์อื่น ให้ติดสถานะต้องตรวจสอบ
+- เปรียบเทียบแสงใต้และนอกสแลนเฉพาะเมื่อทั้งสองตัวอ่านค่าอยู่ในช่วงที่รองรับและไม่ล้นช่วง
+- เริ่มจากสังเกตข้อมูล 7–14 วันเพื่อหาค่าที่เหมาะกับพื้นที่จริง ไม่ใช้เกณฑ์ตัวเลขเพื่อสั่งรดน้ำอัตโนมัติตั้งแต่แรก
 
-## Vision protocol
+## 6. วิธีถ่ายภาพและให้ AI วิเคราะห์
 
-- Filename: YYYY-MM-DD_HHMM_<pot_id>_<view>.jpg; photo local storage, no private household details in frame.
-- Minimum top + side images per pot when feasible with scale label, consistent background/angle and time.
-- AI output JSON should include: observation, evidence_photo, evidence_sensor_window, concern, uncertainty, suggested_manual_action, rationale, version, reviewed_by_human.
-- Avoid claim that an LLM provides certified plant disease identification.
+- ตั้งชื่อภาพตามรูปแบบ ปี-เดือน-วัน_เวลา_รหัสกระถาง_มุมภาพ.jpg เช่น 2026-11-05_0800_A01_top.jpg
+- เมื่อทำได้ควรมีภาพด้านบนและด้านข้าง พร้อมป้ายรหัสและไม้บรรทัดเทียบขนาด
+- ใช้มุม กล้อง ระยะ และเวลาใกล้เคียงกันทุกครั้ง
+- ระวังไม่ให้ติดภาพคนหรือข้อมูลส่วนตัวของบ้าน
+- รายงาน AI ควรระบุข้อสังเกต แหล่งภาพ ช่วงข้อมูลเซนเซอร์ ความไม่แน่นอน คำแนะนำ และผลการตรวจของคน
+- อย่าถือว่าการดูภาพโดย AI เป็นการวินิจฉัยโรคพืชอย่างแน่นอน
 
-## Security, power, and reliability
+## 7. ความปลอดภัยและความต่อเนื่อง
 
-- MQTT authentication; local Wi-Fi/IoT network only; no direct internet exposed.
-- Keep credentials in local configuration, never committed.
-- Place mains power supply in a suitable weather-protected location, route **low-voltage** cable to the plot; use properly protected circuits and qualified installer for new outdoor AC work.
-- Drip loops and weatherproof cable glands for box; no exposed joints / open USB power bricks on wet lawn.
-- ESP32 analog inputs are **3.3V maximum**. Confirm sensor voltage and voltage-divider needs before wiring.
-- Brownout/restart should resume logging only; no uncontrolled actuators (MVP has none).
-- If AI PC offline, data collection and Grafana continue unaffected.
+- ระบบ MQTT ต้องยืนยันตัวตน อยู่ในเครือข่ายที่เชื่อถือได้ ไม่เปิดเข้าถึงจากอินเทอร์เน็ตโดยตรง
+- ไม่ส่งรหัสผ่านขึ้น GitHub
+- เดินสายแรงดันต่ำอย่างป้องกันน้ำ การสะดุด และสัตว์เลี้ยง; ห้ามวางหัวจ่ายไฟบ้านเปลือยกลางสนามหญ้า
+- หากต้องติดตั้งไฟกระแสสลับนอกอาคาร ต้องมีช่างและอุปกรณ์ป้องกันไฟดูดที่เหมาะสม
+- ขา ADC ของ ESP32 รับแรงดันได้ **ไม่เกิน 3.3V**
+- กล่องกันน้ำต้องมีท้องสายกันน้ำย้อน จุดต่อสายปิดผนึก และวางเหนือระดับน้ำสาด
+- เมื่ออุปกรณ์รีสตาร์ต ต้องกลับมาเก็บข้อมูลอย่างปลอดภัย ไม่มีการเปิดปั๊มหรือมอเตอร์โดยไม่ตั้งใจ
+- ถ้าเครื่อง AI ปิดอยู่ การบันทึกข้อมูลและ Dashboard บน Home Lab ต้องยังทำงานต่อ
 
-## Deferred for MVP2
+## 8. ระยะต่อไป (ยังไม่ดำเนินการ)
 
-Automatic irrigation: dedicated pump + flow sensor + dry-run/failsafe + manual override + weather protection. Requires separate design and human confirmation after MVP1 validates advice.
+หากจะเพิ่มระบบรดน้ำอัตโนมัติ ต้องออกแบบปั๊ม วาล์ว เซนเซอร์ตรวจการไหล ระบบหยุดเมื่อไม่มีน้ำ การสั่งด้วยมือ และการหยุดฉุกเฉินแยกต่างหาก หลังพิสูจน์แล้วว่าคำแนะนำในระยะแรกน่าเชื่อถือ
