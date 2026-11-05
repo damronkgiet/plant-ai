@@ -1,95 +1,105 @@
-# Experiment Plan — 8-week pilot (expandable)
+# แผนการทดลองปลูกใบงาเกาหลี — ระยะนำร่อง 8 สัปดาห์
 
-Updated 2026-11-05 | status: planned, baseline not started
+**ปรับปรุง:** 5 พฤศจิกายน 2569 | **สถานะ:** วางแผน ยังไม่เริ่มเก็บข้อมูลจริง
 
-## Question being tested
+## 1. คำถามการทดลอง
 
-Can AI recommendations informed by soil readings, weather trends and standardized photos improve watering decisions and plant outcomes compared with a consistent **safe conventional care protocol**?
+คำแนะนำจาก AI ซึ่งอาศัยค่าความชื้นดิน แนวโน้มสภาพอากาศ และภาพถ่าย สามารถช่วยตัดสินใจรดน้ำได้เหมาะสมขึ้นเมื่อเทียบกับการดูแลมาตรฐานที่ปลอดภัยหรือไม่?
 
-**Design limitation:** 6 A plants vs 6 B plants = small feasibility pilot, not sufficient to declare statistically proven superiority.
+**ข้อจำกัด:** กลุ่มละ 6 กระถางเป็นการตรวจสอบความเป็นไปได้ ไม่เพียงพอจะยืนยันผลต่างทางสถิติ
 
-## Experimental arms and controls
+## 2. วิธีแบ่งกลุ่ม
 
-- **A control — 6 pots**: same shared shade as B, water by pre-declared safe conventional inspection rule (manual finger/weight check each morning and afternoon if hot); amounts and timestamps recorded.
-- **B AI assisted — 6 pots**: same shared shade as A, AI can propose earlier/later watering based on observations, manual checks and sensor readings; human confirms actions; always record recommendation/action/reason.
-- Same seeds, pot size, mix, fertilizer schedule, spacing, pest handling, rain exposure, shade schedule, camera protocol and safe intervention thresholds for both arms.
-- Shade cloth is a **shared plot intervention** and MUST be identical for A and B. The AI may suggest a global shade schedule for safety but it is logged separately and cannot be counted as an independent B-only improvement.
-- Suggested starting layout A/B is interleaved. After similar-sized seedlings establish, block/randomize labels by location or document deviations. Do not move or swap plants mid-comparison without logging.
+**กลุ่ม A — ดูแลมาตรฐาน 6 กระถาง**
+- ใช้กฎตรวจดินด้วยมือหรือชั่งน้ำหนักตามตารางที่กำหนดก่อนเริ่มทดลอง
+- ตรวจอย่างน้อยตอนเช้า และเพิ่มรอบบ่ายหากอากาศร้อน
+- จดน้ำที่รดและเวลาในแต่ละกระถาง
 
-## Staged week plan
+**กลุ่ม B — ใช้คำแนะนำ AI 6 กระถาง**
+- มีแนวทางพื้นฐานและเกณฑ์ช่วยเหลือต้นฉุกเฉินเหมือน A
+- AI เสนอว่าควรตรวจหรือรดน้ำเร็วขึ้น/ช้าลงตามหลักฐาน
+- คนอนุมัติการดำเนินการและบันทึกเหตุผลที่รับ/ปรับ/ไม่รับคำแนะนำ
 
-| Window | Activities | Deliverable | Gate |
-|---|---|---|---|
-| Pre-week / 2–3 days | Survey weather exposure, rain puddles, Wifi, safe DC power, sun path 08/11/14 | site photos & coordinates | garden position approved |
-| Week 1 | Planting/seedling start, IDs A01–B06; water measurement; baseline photos | plant registry | germination documented |
-| Week 2 | Install safe shade / data logger dry run, verify sensor calibration and connectivity | baseline data and QA | ≥90% expected logging coverage after acceptance |
-| Weeks 3–4 | AI in **shadow mode**: outputs advice but does not influence either group | blinded advice vs human observations | review false alerts / missing data |
-| Weeks 5–6 | AI-assisted B watering with human sign-off; A continues fixed conventional safe protocol | daily treatment logs | no unresolved safety concerns |
-| Weeks 7–8 | Measure growth, compare treatment outcomes, harvest *if mature* | interim report and retrospective | decide extend, iterate or stop |
-| After week 8 if necessary | Continue until meaningful edible leaf harvest / flowering observations | actual leaf mass result | close experiment |
+**ต้องเหมือนกันทั้งสองกลุ่ม:** เมล็ด วัสดุปลูก ปริมาตรกระถาง ปุ๋ย การจัดการแมลง การรับฝน ระยะห่าง และตารางสแลน **ใช้สแลนร่วมกันทั้ง 12 กระถาง** จึงห้ามนับผลของการเปิด/ปิดสแลนเป็นประโยชน์ของ AI เฉพาะกลุ่ม B
 
-**Important:** greenhouse/temperate harvest estimates do not guarantee leaves ready in 8 weeks. Record first harvest and first buds as observed.
+## 3. กำหนดการ
 
-## Measurements and cadence
-
-| Metric | How | Cadence |
+| ช่วงเวลา | กิจกรรม | ผลลัพธ์ |
 |---|---|---|
-| Air temperature (°C), RH (%) | shielded SHT31 at canopy | every 5 min |
-| Light in/out (lux) | 2× BH1750; flag saturation | every 5 min; compare only within valid range |
-| Soil moisture | 4× calibrated probes; raw and calibrated indicator | every 5 min |
-| Water added (mL) | graduated jug per pot; after rain note weather | every watering |
-| Pot weight (optional, g) | manual kitchen scale for representative pots | 2–3× week |
-| Plant height (cm), count of healthy leaves | consistent ruler + observation | 2× week |
-| Largest healthy leaf length/width (cm) | ruler | weekly |
-| Leaf damage/discoloration/pest signs | photo + human label (unknown permitted) | ≥4× week |
-| Stem/flower buds | visual inspection | at least weekly |
-| Harvest mass (g) | clean scale per plant | whenever ready |
-| Human effort (minutes) | handling, watering, shade changes | every action |
-| AI advice | model, prompt version, evidence refs, confidence & outcome | 1× daily |
+| ก่อนเริ่ม 2–3 วัน | สำรวจแดด น้ำขัง จุดน้ำ ไฟ และ Wi-Fi | ภาพและขนาดพื้นที่จริง |
+| สัปดาห์ 1 | เพาะหรือย้ายกล้า ตั้งรหัสกระถาง ถ่ายภาพตั้งต้น | ทะเบียนต้นไม้ |
+| สัปดาห์ 2 | ติดตั้งสแลน ทดสอบการเก็บข้อมูลและสอบเทียบเซนเซอร์ | ข้อมูลตั้งต้น |
+| สัปดาห์ 3–4 | ให้ AI แนะนำ **โดยยังไม่ใช้คำแนะนำจริง** | ตรวจความแม่นยำและคำเตือนผิด |
+| สัปดาห์ 5–6 | นำคำแนะนำ AI ไปช่วยรดน้ำกลุ่ม B โดยคนอนุมัติ | บันทึกการตัดสินใจ |
+| สัปดาห์ 7–8 | วัดการเติบโต เปรียบเทียบ เก็บใบหากพร้อม | รายงานสรุป |
+| หลังสัปดาห์ 8 (ถ้าจำเป็น) | เก็บข้อมูลต่อจนมีผลผลิตหรือพบตาดอก | ผลการทดลองเพิ่มเติม |
 
-## Initial shade protocol — both arms
+ช่วงเก็บใบจริงขึ้นกับพันธุ์และสภาพอากาศ ไม่รับประกันว่าพร้อมใน 8 สัปดาห์
 
-- Full-sun site: start with roof mesh 50% for high-heat interval roughly 10:30–15:30 on sunny days.
-- Log every open/close timestamp plus sky/rain state. Modify only if plants experience visible distress; apply equally to A/B.
-- Record thermometer and photos; do not assume all afternoon leaf drooping means water deficit — check pot moisture before extra watering.
-- For severe weather/high wind, remove shade cloth safely and protect people first, documenting any experiment interruption.
+## 4. ข้อมูลที่เก็บ
 
-## Soil sensor calibration (required)
+| รายการ | วิธีวัด | ความถี่ |
+|---|---|---|
+| อุณหภูมิ °C / ความชื้นอากาศ % | SHT31 พร้อมฝาครอบกันแดด | ทุก 5 นาที |
+| แสงใต้/นอกสแลน (lux) | BH1750 สองตัว | ทุก 5 นาที |
+| ความชื้นดินสัมพัทธ์ | เซนเซอร์ที่สอบเทียบ 4 ตัว | ทุก 5 นาที |
+| น้ำที่รด (มล.) | เหยือกตวงแยกกระถาง | ทุกครั้ง |
+| ฝนและเหตุการณ์ผิดปกติ | บันทึกสภาพอากาศ | ทุกวันที่เกี่ยวข้อง |
+| น้ำหนักกระถางตัวอย่าง (กรัม) | ตาชั่ง | 2–3 ครั้ง/สัปดาห์เมื่อทำได้ |
+| ความสูง (ซม.) จำนวนใบที่สมบูรณ์ | ไม้บรรทัดและการนับ | 2 ครั้ง/สัปดาห์ |
+| ความยาว/กว้างของใบใหญ่สุด (ซม.) | ไม้บรรทัด | รายสัปดาห์ |
+| อาการเหี่ยว เหลือง จุดใบ แมลง | ภาพถ่ายและคนตรวจ | อย่างน้อย 4 วัน/สัปดาห์ |
+| วันที่พบตาดอก | ตรวจด้วยตา | อย่างน้อยรายสัปดาห์ |
+| น้ำหนักใบที่เก็บ (กรัม) | ตาชั่ง | ทุกครั้งที่เก็บ |
+| เวลาแรงงาน (นาที) | บันทึกกิจกรรม | ทุกครั้ง |
+| คำแนะนำ AI และการตัดสินใจ | รายงานพร้อมหลักฐาน | ทุกวันในช่วงใช้ AI |
 
-1. Take reading for sensor placed in the actual consistent potting mix when relatively dry but still viable.
-2. Wet pot thoroughly until drainage, allow free drainage / settle, record saturated-after-drain reading and pot mass.
-3. Repeat on each of 4 probes; map raw ADC to a relative moisture score **per sensor**; label it as an estimate not absolute volumetric water content.
-4. Verify probes after 48h and weekly; if sensor drift conflicts with manual/weight check, mark reading invalid.
-5. Never set universal numeric water/no-water threshold solely from cheap probe output.
+## 5. กติกาสแลน
 
-## AI advice and human policy
+- เริ่มสแลน 50% ช่วงแดดแรงราว **10:30–15:30** เป็นสมมติฐาน ไม่ใช่กฎตายตัว
+- บันทึกเวลาที่เปิด/ปิดและสภาพแดด/ฝน
+- ปรับเพื่อความปลอดภัยของพืชได้ แต่ปรับให้ทั้ง A และ B เหมือนกัน
+- ใบตกกลางวันไม่จำเป็นต้องเกิดจากขาดน้ำ ควรตรวจดินก่อนรด
+- ลมแรงหรือพายุให้ถอดผ้าตามความปลอดภัย และบันทึกเหตุการณ์
 
-Every recommendation includes: pot_id, timestamp, relevant sensor window, image path/time, observations, suggested action, severity, uncertainty, and manual approval.
+## 6. การสอบเทียบความชื้นดิน
 
-- Red flags: suspected disease, pesticide/fungicide recommendation, excess watering, heat stress or missing sensors → ask human to inspect, never auto-act.
-- No plant health diagnosis from image alone; treat it as a hypothesis.
-- Decision outcome tags: accepted, modified, rejected, not_applicable.
-- For A plants, record AI advice only in shadow mode; never secretly apply it to A to avoid treatment crossover.
-- Rescue watering allowed for all plants using the same minimum welfare protocol; clearly log it as protocol override.
+1. อ่านค่าดิบของแต่ละตัวในวัสดุปลูกเดียวกับที่ใช้จริง ในสภาพค่อนข้างแห้งแต่ไม่ทำให้พืชเสียหาย
+2. รดจนชุ่มและน้ำไหลออกจากรู รอให้ระบายและสภาพคงที่ แล้วอ่านค่าอีกครั้ง
+3. บันทึกค่าดิบกับน้ำหนักกระถาง ทำสเกล **ความชื้นเชิงสัมพัทธ์รายเซนเซอร์**
+4. ทดสอบซ้ำหลัง 48 ชั่วโมง และตรวจเป็นรายสัปดาห์
+5. ถ้าค่าขัดแย้งกับการตรวจด้วยมือหรือชั่งน้ำหนัก ให้ระบุว่าเซนเซอร์อาจผิดพลาด
 
-## Comparison and interpretation
+**ห้ามถือค่า ADC จากเซนเซอร์ราคาประหยัดเป็นเปอร์เซ็นต์น้ำจริงโดยตรง**
 
-Evaluate per plant and by arm:
-- Number surviving; height and healthy leaf count at weeks 2/4/6/8
-- Mean leaf length/width and first edible leaf or flower-bud timing
-- Total added water in litres **plus rainfall notes** (rain may confound)
-- Harvested edible mass if available
-- Labor time and number of interventions
-- AI alert false positives, actual accepted actions and telemetry availability
+## 7. การใช้ AI อย่างปลอดภัย
 
-Use descriptive tables/photos, not ungrounded claims about statistically significant AI improvement. If either arm gets significantly different shade due to position, flag comparison compromised.
+ทุกคำแนะนำต้องระบุรหัสกระถาง เวลา ช่วงข้อมูล ภาพที่ใช้ ข้อสังเกต การดำเนินการที่เสนอ ระดับความไม่แน่นอน และผลการอนุมัติ
 
-## Daily operator rhythm
+สถานะการตัดสินใจ: **รับคำแนะนำ / ปรับคำแนะนำ / ไม่รับ / ไม่เกี่ยวข้อง**
 
-08:00 inspect all pots + photo; check soil/manual. 11:00 verify sun/shade action. 16:00 look for signs of stress and evaluate watering. Evening AI summary (time can change). Logged entries are more important than following exact clock times.
+- หากภาพไม่ชัด ข้อมูลหาย สงสัยโรคหรือแมลง ให้คนตรวจสอบ ห้ามถือว่า AI วินิจฉัยได้แน่ชัด
+- กลุ่ม A สามารถให้ AI วิเคราะห์เพื่อดูย้อนหลังได้ แต่ **ห้ามนำคำแนะนำไปใช้แทรกแซง A** ระหว่างการเปรียบเทียบ
+- สามารถรดน้ำช่วยต้นที่กำลังเสี่ยงตายได้ในทั้งสองกลุ่มโดยกฎฉุกเฉินเดียวกัน และต้องบันทึกข้อยกเว้น
 
-## CSV templates in repository
+## 8. วิเคราะห์ผล
 
-- [Plant registry](../data/templates/plant-registry.csv)
-- [Daily observations](../data/templates/daily-observations.csv)
-- [Water and decisions](../data/templates/watering-log.csv)
+เปรียบเทียบรายต้นและรายกลุ่ม ได้แก่ อัตรารอด ความสูง จำนวนใบ ขนาดใบ วันเริ่มออกดอก น้ำหนักใบ ปริมาณน้ำ (พร้อมข้อมูลฝน) เวลาแรงงาน จำนวนครั้งที่ดูแล คุณภาพการแจ้งเตือน และความครบของข้อมูล
+
+รายงานเป็นตาราง แนวโน้ม และภาพก่อน/หลัง **ไม่กล่าวอ้างความแตกต่างอย่างมีนัยสำคัญทางสถิติ** จากตัวอย่างจำนวนน้อย
+
+## 9. รอบดูแลประจำวันตัวอย่าง
+
+- **08:00:** ตรวจทุกต้น ดิน ภาพถ่าย และการให้น้ำตามกติกากลุ่ม
+- **11:00:** ตรวจแดดและสแลน
+- **16:00:** ตรวจใบเหี่ยว ความชื้นดิน และเหตุจำเป็นในการดูแล
+- **เย็น:** AI สรุปข้อมูลพร้อมคำแนะนำสำหรับรอบถัดไป
+
+ปรับเวลาได้ แต่ต้องบันทึกเวลาและกิจกรรมจริง
+
+## 10. แบบฟอร์ม
+
+- [ทะเบียนกระถาง](../data/templates/plant-registry.csv)
+- [บันทึกสุขภาพต้น](../data/templates/daily-observations.csv)
+- [บันทึกการให้น้ำ](../data/templates/watering-log.csv)
+- [คำอธิบายคอลัมน์ภาษาไทย](../data/templates/README.md)
