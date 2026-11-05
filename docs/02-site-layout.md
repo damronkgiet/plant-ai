@@ -14,19 +14,21 @@ Updated: 2026-11-05 | Version: v0.4 | Physical installation pending site survey
 - Pots ~25–30 cm diameter; elevate 10–15 cm above turf on stable blocks/feet; ensure drain holes free.
 - 70 cm centers are acceptable for an **early-stage pot trial**; if adult foliage crowds, widen plot or harvest/relocate *both arms equally* and document it.
 
-## Top view (not to exact character scale)
+## Top view (schematic, fixed 4-column grid)
 
 ~~~text
-      NORTH  Y=2.00m          X=0.0                 X=3.0
-            [NW post]----------[N-mid]---------------[NE post]
-Y=1.65       A01               B01       A02*        B02*
-Y=1.00       B03               A03      (T/RH)       B04      A04
-Y=0.35       A05*              B05*      A06         B06
-            [SW post]----------[S-mid / ESP]---------[SE post]
-      SOUTH Y=0.00m           access aisle outside edge
-~~~ 
+                      WEST --> EAST (X)
+             x=.45       1.15       1.85       2.55
+NORTH y=1.65  A01        B01        A02*       B02*
+       y=1.00  B03        A03        B04        A04
+SOUTH y=0.35  A05*       B05*       A06        B06
+                 * = soil moisture probe (4)
+                 T/RH near x=1.50, y=1.00
+                 LUX-IN x=1.50, y=1.48
+                 ESP32 at south-mid post
+~~~
 
-The SVG shows the actual 4×3 pot grid and dimensions; the plain text line for Y=1.00 above is schematic and compressed.
+The [SVG drawing](site-layout.svg) shows dimensions, poles, side curtain, and out-of-plot light sensor.
 
 ## Exact pot coordinates (metres)
 
